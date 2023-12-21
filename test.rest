@@ -1,10 +1,13 @@
 
 
-GET http://localhost:4050/device/state/device1test
+POST http://localhost:4050/device/device1test
 content-type: application/json
 
 
 {
+
+
+
 
 }
 
