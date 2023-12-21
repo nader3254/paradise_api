@@ -46,6 +46,13 @@ const getDevices = async () => {
  */
 const register = async (device_name) => {
   try {
+    let x = getDevices();
+    for (const item of x) {
+      if (item.name.toString().includes(device_name)) {
+        console.log("devices.model->register():: device already exist !");
+        return true;
+      }
+    }
     product_count++;
     let product = {
       id: product_count,
