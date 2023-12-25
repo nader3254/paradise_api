@@ -63,6 +63,7 @@ const register = async (device_name) => {
       enable: true,
       state: 0,
       renewdate: Utils.getDate().toString(),
+      lastseen: Utils.getDateTime().toString(),
       balance: 30,
     };
     let db = await getDB();
@@ -167,11 +168,11 @@ const getDeviceState = async (device_name) => {
     let result = await getDevices();
     for (const item of result) {
       if (item.name.toString().includes(device_name)) {
-        // if (item.client.toString().includes(cclient)) {
-        //   if (item.phone.toString().includes(cphone)) {
+        item.lastseen= Utils.getDateTime().toString();
+        let db = await getDB();
+        update(dbRef(db, "devices/" + item.id.toString()), item);
         return item.state.toString();
-        //   }
-        // }
+
       }
     }
   } catch (e) {

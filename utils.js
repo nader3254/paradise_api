@@ -17,7 +17,17 @@ const getDate = () => {
   const formattedDateTime = `${year}/${month}/${day}`;
   return formattedDateTime;
 };
-
+const getDateTime = () => {
+  const currentDateTime = new Date();
+  const year = currentDateTime.getFullYear();
+  const month = (currentDateTime.getMonth() + 1).toString().padStart(2, "0");
+  const day = currentDateTime.getDate().toString().padStart(2, "0");
+  const hours = currentDateTime.getHours().toString().padStart(2, "0");
+  const minutes = currentDateTime.getMinutes().toString().padStart(2, "0");
+  const seconds = currentDateTime.getSeconds().toString().padStart(2, "0");
+  const formattedDateTime = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+  return formattedDateTime;
+};
 const countDays = (date1, date2) => {
   const parsedDate1 = new Date(date1);
   const parsedDate2 = new Date(date2);
@@ -26,8 +36,8 @@ const countDays = (date1, date2) => {
   return daysDifference;
 };
 
-
 module.exports = {
- getDate,
- countDays
+  getDate,
+  countDays,
+  getDateTime,
 };

@@ -38,10 +38,10 @@ myapp.post("/device/subscription/:name/:bal", Devices.renewDevice);
 
 
 
-
+// tested
 myapp.get("/device/state/:name", Devices.getDeviceSt);
 
-
+// tested
 myapp.post("/device/ctrl/:name/:state", Devices.ctrlDevice);
 
 
