@@ -46,7 +46,7 @@ const getDevices = async () => {
  */
 const register = async (device_name) => {
   try {
-    let x =await getDevices();
+    let x = await getDevices();
     console.log(x);
     for (const item of x) {
       if (item.name.toString().includes(device_name)) {
@@ -168,11 +168,15 @@ const getDeviceState = async (device_name) => {
     let result = await getDevices();
     for (const item of result) {
       if (item.name.toString().includes(device_name)) {
-        item.lastseen= Utils.getDateTime().toString();
+        item.lastseen = Utils.getDateTime().toString();
         let db = await getDB();
+        if (item.state === 10 || item.state.toString() === "10") {
+          item.state = 0;
+          update(dbRef(db, "devices/" + item.id.toString()), item);
+          return "10";
+        }
         update(dbRef(db, "devices/" + item.id.toString()), item);
         return item.state.toString();
-
       }
     }
   } catch (e) {
